@@ -3,12 +3,18 @@ resource "ansible_playbook" "okd-dns-0" {
   playbook = "playbooks/okd-dns-0.yml"
   name = ansible_host.okd-dns-0.name
   replayable = true
+  extra_vars = {
+    ansible_ssh_extra_args = "-oStrictHostKeyChecking=no"
+  }
 }
 
 resource "ansible_playbook" "okd-dns-1" {
   playbook = "playbooks/okd-dns-1.yml"
   name = ansible_host.okd-dns-1.name
   replayable = true
+  extra_vars = {
+    ansible_ssh_extra_args = "-oStrictHostKeyChecking=no"
+  }
 }
 
 //resource "ansible_playbook" "okd-dhcp-0" {
