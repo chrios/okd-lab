@@ -1,13 +1,13 @@
 // {{ ansible_managed }}
 
 zone "okd.home.mawson.tech" {
-    type slave;
+    type secondary;
     file "db.okd.home.mawson.tech";
-    allow-transfer { 10.10.56.2 };
+    primaries { 10.10.56.2; };
 };
 
 zone "56.10.10.in-addr.arpa" {
-    type slave;
+    type secondary;
     file "db.56.10.10.in-addr.arpa";
-    allow-transfer { 10.10.56.2 };
+    primaries { 10.10.56.2; };
 };
