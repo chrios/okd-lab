@@ -65,24 +65,7 @@ resource "libvirt_domain" "okdWeb0" {
     mac = "DE:AD:BE:EF:00:04"
     addresses = ["10.10.56.4"]
   }
-} 
-
-resource "libvirt_domain" "okdDhcp0" {
-  name            = "okdDhcp0"
-  vcpu            = 2
-  memory          = 4000
-  cloudinit = libvirt_cloudinit_disk.cloud_init-ansibleinit.id
-  disk {
-    volume_id = libvirt_volume.okd_dhcp0.id
-    scsi = true
-  }
-  network_interface {
-    network_id = libvirt_network.okd_net.id
-    hostname = "okd-dhcp-0"
-    mac = "DE:AD:BE:EF:00:05"
-    addresses = ["10.10.56.5"]
-  }
-} 
+}  
 
 resource "libvirt_domain" "okdNFS0" {
   name            = "OkdNFS0"
