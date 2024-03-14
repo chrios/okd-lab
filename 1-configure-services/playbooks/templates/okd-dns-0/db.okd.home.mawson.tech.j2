@@ -1,0 +1,19 @@
+; {{ ansible_managed }}
+
+$TTL    604800
+@       IN      SOA     okd-dns-0.okd.home.mawson.tech. admin.okd.home.mawson.tech. (
+                              4         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+; name server NS records
+ IN NS okd-dns-0.okd.home.mawson.tech.
+ IN NS okd-dns-1.okd.home.mawson.tech.
+
+; name server A records
+okd-dns-0.okd.home.mawson.tech. IN A 10.10.56.2
+okd-dns-1.okd.home.mawson.tech. IN A 10.10.56.3
+
+; 10.10.56.0/24 A record

@@ -1,0 +1,49 @@
+---
+- hosts: all
+  become: true
+  remote_user: ansible
+  tasks:
+    - name: install bind
+      apt:
+        name:
+          - bind9
+          - bind9-utils
+          - bind9-dnsutils
+        state: latest
+        update_cache: true
+
+    - name: set bind to run on IPv4 only
+      ansible.builtin.lineinfile:
+        path: /etc/default/named
+        regexp: '^OPTIONS='
+        line: 'OPTIONS="-u bind -4"'
+
+    - name: overwrite named.conf.options
+      template:
+        src: "okd-dns-0/named.conf.options.j2"
+        dest: "/etc/bind/named.conf.options"
+
+    - name: overwrite named.conf.local
+      template:
+        src: "okd-dns-0/named.conf.local.j2"
+        dest: "/etc/bind/named.conf.local"
+
+    - name: create zones folder
+      ansible.builtin.file:
+        path: /etc/bind/zones
+        state: directory
+
+    - name: install forward zone
+      template:
+        src: "okd-dns-0/db.okd.home.mawson.tech.j2"
+        dest: "/etc/bind/zones/db.okd.home.mawson.tech"
+
+    - name: install reverse zone
+      template:
+        src: "okd-dns-0/db.56.10.10.in-addr.arpa.j2"
+        dest: "/etc/bind/zones/db.56.10.10.in-addr.arpa"
+
+    - name: restart bind
+      ansible.builtin.service:
+        name: named
+        state: restarted
