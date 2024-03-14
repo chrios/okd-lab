@@ -40,14 +40,6 @@ resource "libvirt_volume" "okd_web0" {
   base_volume_pool = "vms"
 }
 
-resource "libvirt_volume" "okd_dhcp0" {
-  name = "okd-dhcp0.qcow2"
-  base_volume_id = libvirt_volume.debian_12.id
-  pool = "vms"
-  format = "qcow2"
-  base_volume_pool = "vms"
-}
-
 resource "libvirt_volume" "okd_nfs0" {
   name = "okd-nfs0.qcow2"
   base_volume_id = libvirt_volume.debian_12.id

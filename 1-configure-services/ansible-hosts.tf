@@ -18,11 +18,6 @@ resource "ansible_host" "okd-web-0" {
   groups = ["insecure_hosts"]
 }
 
-resource "ansible_host" "okd-dhcp-0" {
-  name = "10.10.56.5"
-  groups = ["insecure_hosts"]
-}
-
 resource "ansible_host" "okd-nfs-0" {
   name = "10.10.56.6"
   groups = ["insecure_hosts"]
