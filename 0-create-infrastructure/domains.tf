@@ -50,6 +50,23 @@ resource "libvirt_domain" "okdLoadblancer0" {
   }
 } 
 
+resource "libvirt_domain" "okdLoadblancer1" {
+  name            = "okdLoadbalancer1"
+  vcpu            = 2
+  memory          = 4000
+  cloudinit = libvirt_cloudinit_disk.cloud_init-ansibleinit.id
+  disk {
+    volume_id = libvirt_volume.okd_loadbalancer1.id
+    scsi = true
+  }
+  network_interface {
+    network_id = libvirt_network.okd_net.id
+    hostname = "okd-loadbalancer-1"
+    mac = "DE:AD:BE:EF:02:54"
+    addresses = ["10.10.56.254"]
+  }
+} 
+
 resource "libvirt_domain" "okdWeb0" {
   name            = "okdWeb0"
   vcpu            = 2

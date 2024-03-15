@@ -16,6 +16,14 @@ resource "libvirt_volume" "okd_loadbalancer0" {
   base_volume_pool = "vms"
 }
 
+resource "libvirt_volume" "okd_loadbalancer1" {
+  name = "okd-loadbalancer1.qcow2"
+  base_volume_id = libvirt_volume.debian_12.id
+  pool = "vms"
+  format = "qcow2"
+  base_volume_pool = "vms"
+}
+
 resource "libvirt_volume" "okd_dns0" {
   name = "okd-dns0.qcow2"
   base_volume_id = libvirt_volume.debian_12.id
