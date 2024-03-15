@@ -11,7 +11,6 @@ resource "libvirt_domain" "okdDns0" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-dns-0"
-    mac = "DE:AD:BE:EF:00:2"
     addresses = ["10.10.56.2"]
   }
 } 
@@ -28,7 +27,6 @@ resource "libvirt_domain" "okdDns1" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-dns-1"
-    mac = "DE:AD:BE:EF:00:3"
     addresses = ["10.10.56.3"]
   }
 } 
@@ -45,7 +43,6 @@ resource "libvirt_domain" "okdLoadblancer0" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-loadbalancer-0"
-    mac = "DE:AD:BE:EF:02:53"
     addresses = ["10.10.56.253"]
   }
 } 
@@ -62,7 +59,6 @@ resource "libvirt_domain" "okdLoadblancer1" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-loadbalancer-1"
-    mac = "DE:AD:BE:EF:02:54"
     addresses = ["10.10.56.254"]
   }
 } 
@@ -79,7 +75,6 @@ resource "libvirt_domain" "okdWeb0" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-web-0"
-    mac = "DE:AD:BE:EF:00:04"
     addresses = ["10.10.56.4"]
   }
 }  
@@ -96,7 +91,6 @@ resource "libvirt_domain" "okdWeb1" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-web-1"
-    mac = "DE:AD:BE:EF:00:05"
     addresses = ["10.10.56.5"]
   }
 }  
@@ -113,7 +107,6 @@ resource "libvirt_domain" "okdNFS0" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-nfs-0"
-    mac = "DE:AD:BE:EF:00:06"
     addresses = ["10.10.56.6"]
   }
 } 
@@ -131,7 +124,61 @@ resource "libvirt_domain" "okdNFS1" {
   network_interface {
     network_id = libvirt_network.okd_net.id
     hostname = "okd-nfs-1"
-    mac = "DE:AD:BE:EF:00:07"
     addresses = ["10.10.56.7"]
   }
 } 
+
+
+# These are the OKD machines
+resource "libvirt_domain" "okdBootstrap" {
+  name            = "okdBootstrap"
+  vcpu            = 4
+  memory          = 16000
+  disk {
+    volume_id = libvirt_volume.okd_bootstrap.id
+    scsi = true
+  }
+  network_interface {
+    network_id = libvirt_network.okd_net.id
+    hostname = "okd-bootstrap"
+    addresses = ["10.10.56.10"]
+  }
+  running = false
+} 
+
+resource "libvirt_domain" "okdController" {
+  name            = "okdController${count.index}"
+  vcpu            = 4
+  memory          = 16000
+  count           = 2
+  autostart       = true
+  disk {
+    volume_id       = libvirt_volume.okd_controller[count.index].id
+    scsi            = true
+  }
+  network_interface {
+    network_id      = libvirt_network.okd_net.id
+    hostname        = "okd-controller-${count.index}"
+    
+    addresses = ["10.10.56.10${count.index}"]
+  }
+  running = false
+}
+
+resource "libvirt_domain" "okdWorker" {
+  name            = "okdWorker${count.index}"
+  vcpu            = 4
+  memory          = 16000
+  count           = 3
+  autostart       = true
+  disk {
+    volume_id       = libvirt_volume.okd_worker[count.index].id
+    scsi            = true
+  }
+  network_interface {
+    network_id      = libvirt_network.okd_net.id
+    hostname        = "okd-worker-${count.index}"
+    addresses = ["10.10.56.3${count.index}"]
+  }
+  running = false
+}

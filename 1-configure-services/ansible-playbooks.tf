@@ -35,13 +35,6 @@ resource "ansible_playbook" "okd-loadbalancer-1" {
   }
 }
 
-//resource "ansible_playbook" "okd-dhcp-0" {
-//  playbook = "playbooks/okd-dhcp-0.yml"
-//  name = "ansible_host.okd-dhcp-0.name"
-//  replayable = true
-//}
-
-
 //
 //resource "ansible_playbook" "okd-nfs-0" {
 //  playbook = "playbooks/okd-nfs-0.yml"
