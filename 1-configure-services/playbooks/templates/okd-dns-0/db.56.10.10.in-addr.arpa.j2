@@ -2,16 +2,39 @@
 
 $TTL    604800
 @       IN      SOA     okd-dns-0.okd.home.mawson.tech. admin.okd.home.mawson.tech. (
-                              4         ; Serial
+                              9         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
 ; name server NS records
- IN NS okd-dns-0.okd.home.mawson.tech.
- IN NS okd-dns-1.okd.home.mawson.tech.
-
+@ IN NS okd-dns-0.okd.home.mawson.tech.
+@ IN NS okd-dns-1.okd.home.mawson.tech.
+;
 ; PTR records
-2 IN PTR okd-dns-0.okd.home.mawson.tech. ; 10.10.56.2
-3 IN PTR okd-dns-0.okd.home.mawson.tech. ; 10.10.56.3
+2 IN PTR okd-dns-0.okd.home.mawson.tech. 
+3 IN PTR okd-dns-1.okd.home.mawson.tech. 
+;
+4 IN PTR okd-web-0.okd.home.mawson.tech. 
+5 IN PTR okd-web-1.okd.home.mawson.tech. 
+;
+6 IN PTR okd-nfs-0.okd.home.mawson.tech. 
+7 IN PTR okd-nfs-1.okd.home.mawson.tech. 
+;
+252 IN PTR okd-loadbalancer-vip.okd.home.mawson.tech.
+253 IN PTR okd-loadbalancer-0.okd.home.mawson.tech.
+254 IN PTR okd-loadbalancer-1.okd.home.mawson.tech.
+;
+; okd required dns
+252 IN PTR api.okd.home.mawson.tech.
+252 IN PTR api-int.okd.home.mawson.tech.
+;
+100 IN PTR bootstrap.okd.home.mawson.tech.
+;
+101 IN PTR control-plane0.okd.home.mawson.tech.
+102 IN PTR control-plane1.okd.home.mawson.tech.
+;
+103 IN PTR compute0.okd.home.mawson.tech.
+104 IN PTR compute1.okd.home.mawson.tech.
+105 IN PTR compute2.okd.home.mawson.tech.

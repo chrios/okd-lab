@@ -26,7 +26,6 @@ resource "ansible_host" "okd-loadbalancer-0" {
   name = "10.10.56.253"
 }
 
-
 resource "ansible_host" "okd-loadbalancer-1" {
   name = "10.10.56.254"
 }
