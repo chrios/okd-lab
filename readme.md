@@ -24,3 +24,10 @@ This will perform the following:
 - Create a fedora coreos cloud image to host bootstrap (okd-bootstrap)
 - Create 2 fedora coreos cloud image to host controller (okd-controller-n)
 - Create 3 fedora coreos cloud image to host workers (okd-worker-n)
+
+# references
+
+https://www.redhat.com/sysadmin/keepalived-basics
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/high_availability_add-on_administration/ch-nfsserver-haaa
+https://docs.okd.io/latest/installing/installing_bare_metal/installing-bare-metal.html#installation-infrastructure-user-infra_installing-bare-metal
+https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-20-04
