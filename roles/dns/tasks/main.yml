@@ -43,7 +43,7 @@
   when: bind_server_type == 'primary'
 
 - name: Install forward zone on primary
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: "zones/db.okd.home.mawson.tech"
     dest: "/etc/bind/zones/db.okd.home.mawson.tech"
     mode: 'u=rw,g=r,o=r'
@@ -53,7 +53,7 @@
   when: bind_server_type == 'primary'
 
 - name: Install reverse zone on primary
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: "zones/db.56.10.10.in-addr.arpa"
     dest: "/etc/bind/zones/db.56.10.10.in-addr.arpa"
     mode: 'u=rw,g=r,o=r'
