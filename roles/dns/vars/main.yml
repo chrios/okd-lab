@@ -1,0 +1,6 @@
+zones:
+  - 'okd.home.mawson.tech'
+  - '56.10.10.in-addr.arpa'
+
+primary_dns_server_ip: 10.10.56.2
+secondary_dns_server_ip: 10.10.56.3

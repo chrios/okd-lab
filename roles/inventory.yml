@@ -1,0 +1,38 @@
+webservers:
+  10.1.56.4:
+
+primarydnsserver:
+  hosts:
+    10.10.56.2:
+  vars:
+    bind_server_type: 'primary'
+
+secondarydnsserver:
+  hosts: 
+    10.10.56.3:
+  vars:
+    into into : 'secondary'
+
+dnsservers:
+  children:
+    primarydnsserver:
+    secondarydnsserver:
+  
+primaryloadbalancer:
+  hosts:
+    10.10.56.253:
+  vars: 
+    vrrp_node_type: 'MASTER'
+    vrrp_priority: '255'
+
+seondaryloadbalancer:
+  hosts:
+    10.10.56.254:
+  vars: 
+    vrrp_node_type: 'BACKUP'
+    vrrp_priority: '254'
+
+loadbalancers:
+  children:
+    primaryloadbalancer:
+    seondaryloadbalancer:

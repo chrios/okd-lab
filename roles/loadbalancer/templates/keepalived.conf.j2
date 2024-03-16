@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+
+vrrp_instance {{ vrrp_instance_name }} {
+      state {{ vrrp_node_type }}
+      interface {{ vrrp_interface_name }}
+      virtual_router_id {{ vrrp_virtual_router_id }}
+      priority {{ vrrp_priority }}
+      advert_int 1
+      authentication {
+            auth_type PASS
+            auth_pass {{ vrrp_auth_password }}
+      }
+      virtual_ipaddress {
+      {{ vrrp_virtual_ip }}{{ vrrp_virtual_ip_cidr }}
+      }
+}

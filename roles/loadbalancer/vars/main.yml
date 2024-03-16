@@ -1,0 +1,9 @@
+vrrp_virtual_ip: '10.10.56.252'
+vrrp_virtual_ip_cidr: '/24'
+vrrp_auth_password: '12345'
+vrrp_virtual_router_id: '51'
+vrrp_interface_name: 'ens3'
+vrrp_instance_name: 'VI_1'
+
+cluster_name: 'okd'
+cluster_domain: 'home.mawson.tech'

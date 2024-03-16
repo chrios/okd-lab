@@ -1,0 +1,16 @@
+// {{ ansible_managed }}
+
+{% for zone in zones %}
+{% if {{ bind_server_type == 'primary' }} %}
+zone "{{ zone }}" {
+    type {{ bind_server_type }};
+    file "/etc/bind/zones/{{ zone }}";
+    allow-transfer { {{ secondary_dns_server_ip }}; };
+};
+{% else %}
+zone "{{ zone }}" {
+    type {{ bind_server_type }};
+    file "{{ zone }}";
+    primaries { {{ primary_dns_server_ip }}; };
+};
+{% endif %}

@@ -10,8 +10,8 @@ options {
 
     recursion yes;
     allow-recursion { trusted; };
-    listen-on { 10.10.56.3; };
-    allow-transfer { none ;};
+    listen-on { any; };
+    allow-transfer { none;};
 
     forwarders {
         10.10.56.1;

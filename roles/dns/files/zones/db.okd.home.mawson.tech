@@ -18,9 +18,8 @@ okd-dns-1.okd.home.mawson.tech. IN A 10.10.56.3
 ;
 ; 10.10.56.0/24 A record
 okd-web-0.okd.home.mawson.tech. IN A 10.10.56.4
-web.okd.home.mawson.tech. IN A 10.10.56.4
 okd-web-1.okd.home.mawson.tech. IN A 10.10.56.5
-web.okd.home.mawson.tech. IN A 10.10.56.5
+web.okd.home.mawson.tech. IN A 10.10.56.6
 ;
 okd-loadbalancer-vip.okd.home.mawson.tech. IN A 10.10.56.252
 okd-loadbalancer-0.okd.home.mawson.tech. IN A 10.10.56.253
