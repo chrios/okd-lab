@@ -56,25 +56,7 @@ resource "libvirt_volume" "okd_web1" {
   base_volume_pool = "vms"
 }
 
-resource "libvirt_volume" "okd_nfs0" {
-  name = "okd-nfs0.qcow2"
-  base_volume_id = libvirt_volume.debian_12.id
-  pool = "vms"
-  format = "qcow2"
-  base_volume_pool = "vms"
-}
-
-resource "libvirt_volume" "okd_nfs1" {
-  name = "okd-nfs1.qcow2"
-  base_volume_id = libvirt_volume.debian_12.id
-  pool = "vms"
-  format = "qcow2"
-  base_volume_pool = "vms"
-}
-
-
-
-# These are the templates for the further machines
+# the templates for the OKD  machines
 resource "libvirt_volume" "fedora_coreos" {
   name    = "fedora_coreos.qcow2"
   source  = "file:///mnt/data/iso/fedora-coreos-39.20240210.3.0-qemu.x86_64.qcow2"

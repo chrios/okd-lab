@@ -95,40 +95,6 @@ resource "libvirt_domain" "okdWeb1" {
   }
 }  
 
-resource "libvirt_domain" "okdNFS0" {
-  name            = "OkdNFS0"
-  vcpu            = 2
-  memory          = 4000
-  cloudinit = libvirt_cloudinit_disk.cloud_init-ansibleinit.id
-  disk {
-    volume_id = libvirt_volume.okd_nfs0.id
-    scsi = true
-  }
-  network_interface {
-    network_id = libvirt_network.okd_net.id
-    hostname = "okd-nfs-0"
-    addresses = ["10.10.56.6"]
-  }
-} 
-
-
-resource "libvirt_domain" "okdNFS1" {
-  name            = "OkdNFS1"
-  vcpu            = 2
-  memory          = 4000
-  cloudinit = libvirt_cloudinit_disk.cloud_init-ansibleinit.id
-  disk {
-    volume_id = libvirt_volume.okd_nfs1.id
-    scsi = true
-  }
-  network_interface {
-    network_id = libvirt_network.okd_net.id
-    hostname = "okd-nfs-1"
-    addresses = ["10.10.56.7"]
-  }
-} 
-
-
 # These are the OKD machines
 resource "libvirt_domain" "okdBootstrap" {
   name            = "okdBootstrap"
