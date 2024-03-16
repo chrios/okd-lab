@@ -7,13 +7,6 @@
       - bind9-dnsutils
     update_cache: true
 
-- name: Set bind to run on IPv4 only
-  ansible.builtin.lineinfile:
-    path: /etc/default/named
-    regexp: '^OPTIONS='
-    line: 'OPTIONS="-u bind -4"'
-  notify: "restart bind services"
-
 - name: Overwrite named.conf.options
   ansible.builtin.template:
     src: "named.conf.options.j2"
