@@ -1,0 +1,13 @@
+---
+- name: Setup OKD infrastructure
+- hosts: dnsservers
+  roles:
+    - dns
+
+- hosts: loadbalancers
+  roles:
+    - loadbalancer
+
+- hosts: webservers
+  roles:
+    - web
