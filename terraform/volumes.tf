@@ -48,14 +48,6 @@ resource "libvirt_volume" "okd_web0" {
   base_volume_pool = "vms"
 }
 
-resource "libvirt_volume" "okd_web1" {
-  name = "okd-web1.qcow2"
-  base_volume_id = libvirt_volume.debian_12.id
-  pool = "vms"
-  format = "qcow2"
-  base_volume_pool = "vms"
-}
-
 # the templates for the OKD  machines
 resource "libvirt_volume" "fedora_coreos" {
   name    = "fedora_coreos.qcow2"

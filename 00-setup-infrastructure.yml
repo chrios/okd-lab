@@ -1,13 +1,21 @@
 ---
-- name: Setup OKD infrastructure
-- hosts: dnsservers
+- name: Setup dns servers
+  remote_user: ansible
+  become: true
+  hosts: dnsservers
   roles:
     - dns
 
-- hosts: loadbalancers
+- name: Setup loadbalancers
+  remote_user: ansible
+  become: true
+  hosts: loadbalancers
   roles:
     - loadbalancer
 
-- hosts: webservers
+- name: Setup webservers
+  remote_user: ansible
+  become: true
+  hosts: webservers
   roles:
     - web

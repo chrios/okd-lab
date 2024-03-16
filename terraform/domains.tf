@@ -79,22 +79,6 @@ resource "libvirt_domain" "okdWeb0" {
   }
 }  
 
-resource "libvirt_domain" "okdWeb1" {
-  name            = "okdWeb1"
-  vcpu            = 2
-  memory          = 4000
-  cloudinit = libvirt_cloudinit_disk.cloud_init-ansibleinit.id
-  disk {
-    volume_id = libvirt_volume.okd_web1.id
-    scsi = true
-  }
-  network_interface {
-    network_id = libvirt_network.okd_net.id
-    hostname = "okd-web-1"
-    addresses = ["10.10.56.5"]
-  }
-}  
-
 # These are the OKD machines
 resource "libvirt_domain" "okdBootstrap" {
   name            = "okdBootstrap"

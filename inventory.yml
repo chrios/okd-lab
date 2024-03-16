@@ -11,7 +11,7 @@ secondarydnsserver:
   hosts: 
     10.10.56.3:
   vars:
-    into into : 'secondary'
+    bind_server_type : 'secondary'
 
 dnsservers:
   children:
